@@ -23,7 +23,7 @@ const view = {
 	},
 	hide(element) {
 		element.style.display = 'none';
-	}
+	},
 	setup() {
 		this.show(this.question);
 		this.show(this.response);
@@ -33,11 +33,11 @@ const view = {
 		this.render(this.result, '');
 		this.render(this.info, '');
 		this.resetForm();
-	}
+	},
 	resetForm() {
 		this.response.answer.value = '';
 		this.response.answer.focus();
-	}
+	},
 	teardown() {
 		this.hide(this.question);
 		this.hide(this.response);
@@ -53,7 +53,6 @@ const game = {
 		view.setup();
 		this.ask();
 	},
-
 	ask(name) {
 		if(this.questions.length > 0) {
 			this.question = this.questions.pop();
@@ -63,7 +62,6 @@ const game = {
 			this.gameOver();
 		}
 	},
-
 	check(event) {
 		event.preventDefault();
 		const response = view.response.answer.value;
@@ -78,7 +76,6 @@ const game = {
 		view.resetForm();
 		this.ask();
 	},
-
 	gameOver() {
 		view.render(view.info, `Game Over, you scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
 		view.teardown();
