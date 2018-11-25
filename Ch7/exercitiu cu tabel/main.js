@@ -21,8 +21,30 @@ function creareTabel(a, b) {
 	}
 }
 
-function verificare() {
-	
+function verificare(lin, col) {
+	let m = tabla[lin][col];
+	let cellList = [getCell(lin,col)];
+	//console.log(cellList);
+
+	//linie
+	let nr = 1;
+	for(let j = col-1; j>=0 && tabla[lin][j]===m; j--) {
+		nr++;
+		cellList.push(getCell(lin,j));
+	}
+	for(let j = col+1; j<nrColoane && tabla[lin][j]===m; j++) {
+		nr++;
+		cellList.push(getCell(lin,j));
+	}
+	if(nr>=5) {
+		console.log("linie! " + m);
+		cellList.forEach((cell,index) => cell.classList.add('highlight'));
+	}
+}
+
+function getCell(lin, col) {
+	let cellList = document.getElementsByTagName('td');
+	return cellList[lin*nrRanduri + col];
 }
 
 function schimba(event){
@@ -33,7 +55,9 @@ function schimba(event){
 
 			let lin = celula.parentElement.rowIndex;
 			let col = celula.cellIndex;
-			tabla[lin][col] = mutare;  console.log(tabla);
+			tabla[lin][col] = mutare;
+
+			verificare(lin, col);
 
 			if(mutare === 'X') {
 				mutare = 'O';
