@@ -26,7 +26,7 @@ function verificare(lin, col) {
 	let cellList = [getCell(lin,col)];
 	//console.log(cellList);
 
-	//linie
+	//linie orizontală
 	let nr = 1;
 	for(let j = col-1; j>=0 && tabla[lin][j]===m; j--) {
 		nr++;
@@ -39,7 +39,60 @@ function verificare(lin, col) {
 	if(nr>=5) {
 		console.log("linie! " + m);
 		cellList.forEach((cell,index) => cell.classList.add('highlight'));
+		puncteaza(m, cellList);
 	}
+
+	//linie verticală
+	nr = 1;
+	cellList = [getCell(lin,col)];
+	for(let i = lin-1; i>=0 && tabla[i][col]===m; i--) {
+		nr++;
+		cellList.push(getCell(i,col));
+	}
+	for(let i = lin+1; i<nrRanduri && tabla[i][col]===m; i++) {
+		nr++;
+		cellList.push(getCell(i,col));
+	}
+	if(nr>=5) {
+		console.log("coloană! " + m);
+		cellList.forEach((cell,index) => cell.classList.add('highlight'));
+		puncteaza(m, cellList);
+	}
+
+	//linie diagonală 1
+	nr = 1;
+	cellList = [getCell(lin,col)];
+	for(let i = lin-1, j = col-1; i>=0 && j>=0 && tabla[i][j]===m; i--,j--) {
+		nr++;
+		cellList.push(getCell(i,j));
+	}
+	for(let i = lin+1, j=col+1; i<nrRanduri && j<nrColoane && tabla[i][j]===m; i++,j++) {
+		nr++;
+		cellList.push(getCell(i,j));
+	}
+	if(nr>=5) {
+		console.log("diagonală 1! " + m);
+		cellList.forEach((cell,index) => cell.classList.add('highlight'));
+		puncteaza(m, cellList);
+	}
+
+	//linie diagonală 2
+	nr = 1;
+	cellList = [getCell(lin,col)];
+	for(let i = lin-1, j = col+1; i>=0 && j<nrColoane && tabla[i][j]===m; i--,j++) {
+		nr++;
+		cellList.push(getCell(i,j));
+	}
+	for(let i = lin+1, j=col-1; i<nrRanduri && j>=0 && tabla[i][j]===m; i++,j--) {
+		nr++;
+		cellList.push(getCell(i,j));
+	}
+	if(nr>=5) {
+		console.log("diagonală 2! " + m);
+		cellList.forEach((cell,index) => cell.classList.add('highlight'));
+		puncteaza(m, cellList);
+	}
+
 }
 
 function getCell(lin, col) {
@@ -65,6 +118,40 @@ function schimba(event){
 				mutare = 'X';
 			}
 	}
+}
+
+function reset() {
+	for(let i=0; i<nrRanduri; i++) {
+		for(let j=0; j<nrColoane; j++) {
+			tabla[i][j] = 0;
+			let td = getCell(i, j);
+			td.innerHTML = "";
+			td.classList.remove('highlight');
+		}
+	}
+}
+
+function puncteaza(mutare, cellList) {
+	if(mutare==='X') {
+		if (confirm("Jucătorul 1 a câștigat această rundă! Continuați?")) {
+			//ok
+			let scorx = document.getElementById('scorx');
+			scorx.innerHTML = Number(scorx.innerText) + 1;
+		}
+		else {
+			//cancel
+		}
+	}
+	else {
+		if (confirm("Jucătorul 2 a câștigat această rundă! Continuați?")) {
+			//ok
+			let scor0 = document.getElementById('scor0');
+			scor0.innerHTML = Number(scor0.innerText) + 1;
+		}
+		else {
+			//cancel
+		}		
+	}	
 }
 
 creareTabel(nrRanduri, nrColoane);
