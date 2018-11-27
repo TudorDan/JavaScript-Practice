@@ -8,7 +8,7 @@ const chestionar = [
 //Obiectul de vedere
 const vedere = {
 	punctaj: document.querySelector('#punctaj strong'),
-	intrebare: document.getElementById('#intrebare'),
+	intrebare: document.getElementById('intrebare'),
 	rezultat: document.getElementById('rezultat'),
 	informatie: document.getElementById('informatie'),
 	render(tinta, continut, atribute) {
@@ -37,6 +37,11 @@ const joc = {
 
 	interogheaza() {
 		const intrebare = `${this.intrebare.cerinta}`;
+
+console.log(joc);
+console.log(vedere);
+console.log(intrebare);
+
 		vedere.render(vedere.intrebare, intrebare);
 		const raspunsUtilizator = prompt(intrebare);
 		this.verifica(raspunsUtilizator);
