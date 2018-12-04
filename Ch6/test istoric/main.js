@@ -2,7 +2,7 @@ const chestionar = [
 	{ cerinta: 'Care general (\'strateg\') este considerat, tradițional, învigătorul perșilor în Bătălia de la Maraton?', raspunsCorect: 'Miltiade'},
 	{ cerinta: 'Cine a fost adevăratul general șef (\'strateg polemarh\'), conform cercetărilor recente?', raspunsCorect: 'Callimachus din Aphidna' },
 	{ cerinta: 'Numiți istoricul care a scris despre bătălie și era prieten cu generalul Cimon, fiul lui Miltiade.', raspunsCorect: 'Herodot' },
-	{ cerinta: 'Răspundeți cu adevărat sau fals dacă polemarhul Callimachus - ucis în luptă la Maraton - a avut urmași care să-i pastreze memoria.', raspunsCorect: 'fals' },
+	{ cerinta: 'Răspundeți cu A (adevărat), sau F (fals) dacă polemarhul Callimachus - ucis în luptă la Maraton - a avut urmași care să-i pastreze memoria.', raspunsCorect: 'F' },
 ];
 
 //Obiectul de vedere
@@ -55,7 +55,7 @@ console.log(intrebare);
 			this.punctaj++;
 			vedere.render(vedere.punctaj, this.punctaj);
 		} else {
-			vedere.render(vedere.rezultat, `Greșit! Răspunsul corect era ${solutie}`, {'class': 'gresit'});
+			vedere.render(vedere.rezultat, `Greșit! Răspunsul corect era: ${solutie}.`, {'class': 'gresit'});
 			alert(`Greșit! Răspunsul corect era: ${solutie}.`);
 		}
 	},
