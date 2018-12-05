@@ -21,17 +21,24 @@ function makeHero(event) {
 
 	hero.powers = [];
 
-	alert(JSON.stringify(hero)); //convert object to JSON string and display in alert dialog
-
+	/*
 	for(let i = 0; i < form.powers.length; i++) {
 		if(form.powers[i].checked) {
 			hero.powers.push(form.powers[i].value);
 		}
 	}
+	*/
+
+	//refactor using array iterators
+	hero.powers = [...form.powers].filter(box => box.checked).map(box => box.value);
+
+	alert(JSON.stringify(hero)); //convert object to JSON string and display in alert dialog
 
 	return hero;
 }
 
+/*
+//Form Validation
 form.addEventListener('submit', validate, false);
 
 function validate(event) {
@@ -41,22 +48,24 @@ function validate(event) {
 		alert('Your name is not allowed to start with X!');
 	}
 }
+*/
 
+//Alternative Form Validation using Instant Feedback when user presses a key
 const label = form.querySelector('label');
-
 const error = document.createElement('div');
 
 error.classList.add('error');
-
 error.textContent = '! Your name is not allowed to start with X.'
 
 label.append(error);
 
-function validateInline() {
-	const heroName = this.value.toUpperCase();
+function validateInline(ev) {
+	const heroName = ev.target.value.toUpperCase();
 	if(heroName.startsWith('X')) {
 		error.style.display = 'block';
 	} else {
 		error.style.display = 'none';
 	}
 }
+
+form.addEventListener('keyup', validateInline, false);
