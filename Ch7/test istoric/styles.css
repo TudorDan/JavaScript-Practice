@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Da|Roboto');
-
+body, html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
 body {
 	background: #5F1C1C;
 	font-family: 'Roboto', sans-serif;
