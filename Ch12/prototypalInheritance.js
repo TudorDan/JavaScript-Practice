@@ -28,3 +28,22 @@ raph._proto_;
 
 //If we create another instance of the Turtle class, we'll see that it also inherits a weapon property that has the same value of "Hands"
 const don = new Turtle('Donatello');
+
+//An object instance can overwrite any properties or methods inherited from its prototype by simply assigning a new value to them:
+leo.weapon = 'Katana Blades';
+raph.weapon = 'Sai';
+don.weapon = 'Bo Staff';
+
+//A good candidate for a prototype property or method is something that will remain the same for every instance of that class
+Turtle.prototype.food = 'Pizza';
+Turtle.prototype.eat = function() {
+    return `Mmm, this ${this.food} tastes great!`;
+}
+
+//Use the class constructor to initialize an instance:
+const mike = new Turtle('Michelangelo');
+//Verify that the new instance has inherited properties an methods from the prototype:
+mike.eat();
+//Augment the instance with its own individual weapon property
+mike.weapon = 'Nunchakus';
+mike.attack();
