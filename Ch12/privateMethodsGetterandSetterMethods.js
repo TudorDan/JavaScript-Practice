@@ -15,3 +15,5 @@ class Turtle {
 }
 //The getColor() and setColor() methods are known as getter and setter methods and they form a closure over this variable and provide controlled access to the property instead:
 raph = new Turtle('Raphael', 'Red');
+raph.getColor();
+raph.setColor(4);
